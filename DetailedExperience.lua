@@ -1,5 +1,5 @@
 local Addon = {}
-Addon.name = "DetailedExperience"
+Addon.name = 'DetailedExperience'
 
 local GetWindowManager = GetWindowManager
 local WINDOW_MANAGER = GetWindowManager()
@@ -43,11 +43,11 @@ local ZO_PreHookHandler = ZO_PreHookHandler
 
 local SI_EXPERIENCE_LIMIT_REACHED = SI_EXPERIENCE_LIMIT_REACHED
 
-local PROGRESS_SCENE_FRAGMENTS = { "hud", "hudui", "interact" }
+local PROGRESS_SCENE_FRAGMENTS = { 'hud', 'hudui', 'interact' }
 
 local function GetProgressText(current, max)
   max = max > 0 and max or 1
-  return strformat("%d / %d (%d%%)", current, max, (current / max) * 100)
+  return strformat('%d / %d (%d%%)', current, max, (current / max) * 100)
 end
 
 local function ShouldShowProgressBar()
@@ -55,16 +55,16 @@ local function ShouldShowProgressBar()
 end
 
 local function GetPlayerXP()
-  if (IsUnitChampion("player")) then
+  if (IsUnitChampion('player')) then
     return GetPlayerChampionXP()
   end
 
-  return GetUnitXP("player")
+  return GetUnitXP('player')
 end
 
 local function GetPlayerXPMax()
-  if (IsUnitChampion("player")) then
-    local playerChampionPoints = GetUnitChampionPoints("player")
+  if (IsUnitChampion('player')) then
+    local playerChampionPoints = GetUnitChampionPoints('player')
     local maxRank = GetChampionPointsPlayerProgressionCap()
 
     if (playerChampionPoints == maxRank) then
@@ -74,14 +74,14 @@ local function GetPlayerXPMax()
     return GetNumChampionXPInChampionPoint(playerChampionPoints)
   end
 
-  return GetUnitXPMax("player")
+  return GetUnitXPMax('player')
 end
 
 function Addon:OnPlayerActivated()
   EVENT_MANAGER:UnregisterForEvent(self.name, EVENT_PLAYER_ACTIVATED)
 
   local color = ZO_ColorDef:New(1, .7, 1)
-  CHAT_SYSTEM:AddMessage(color:Colorize(self.name.." loaded"))
+  CHAT_SYSTEM:AddMessage(color:Colorize(self.name..' loaded'))
 end
 
 function Addon:UpdateProgressLabel()
@@ -123,11 +123,11 @@ function Addon:Initialize()
   PLAYER_PROGRESS_BAR_CURRENT_FRAGMENT:SetConditional(ShouldShowProgressBar)
 
   self.control = PLAYER_PROGRESS_BAR.control
-  self.barControl = self.control:GetNamedChild("Bar")
+  self.barControl = self.control:GetNamedChild('Bar')
 
-  self.progressLabel = WINDOW_MANAGER:CreateControl("DetailedExperienceProgress", self.control, CT_LABEL)
-  self.progressLabel:SetAnchor(RIGHT, self.barControl, RIGHT, -5, 20)
-  self.progressLabel:SetFont("ZoFontGameBold")
+  self.progressLabel = WINDOW_MANAGER:CreateControl('DetailedExperienceProgress', self.control, CT_LABEL)
+  self.progressLabel:SetAnchor(RIGHT, self.barControl, RIGHT, - 5, 20)
+  self.progressLabel:SetFont('ZoFontGameBold')
   self.progressLabel:SetHorizontalAlignment(TEXT_ALIGN_RIGHT)
   self.progressLabel:SetVerticalAlignment(TEXT_ALIGN_CENTER)
 
@@ -163,7 +163,7 @@ do
   function Addon:HookPlayerProgressBar()
     PLAYER_PROGRESS_BAR.SetBarValue = SetBarValue
 
-    ZO_PreHookHandler(PLAYER_PROGRESS_BAR.fadeTimeline, "OnPlay", OnPlayProgressBarFade)
+    ZO_PreHookHandler(PLAYER_PROGRESS_BAR.fadeTimeline, 'OnPlay', OnPlayProgressBarFade)
   end
 end
 
