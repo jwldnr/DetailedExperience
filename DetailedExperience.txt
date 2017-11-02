@@ -1,7 +1,7 @@
 ## Title: |cff8800Detailed Experience|r
 ## Description: A more detailed experience bar
 ## Author: myslex
-## APIVersion: 100020
+## APIVersion: 100021
 ## Version: 1.0
 
 DetailedExperience.lua
